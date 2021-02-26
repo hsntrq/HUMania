@@ -128,7 +128,7 @@ SDL_Texture* Game::loadTexture( std::string path )
 }
 void Game::run( )
 {
-	bool quit;
+	bool quit = false;
 	SDL_Event e;
 
 	HUMania humania(gRenderer, assets);
