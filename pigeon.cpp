@@ -2,8 +2,10 @@
 // pigeon implementation will go here.
 
 void Pigeon::draw(SDL_Renderer* gRenderer, SDL_Texture* assets){
+    srcRect = srcSprite[frame];
     SDL_RenderCopy(gRenderer, assets, &srcRect, &moverRect);
     fly(gRenderer, assets);
+    frame = (frame + 1)%3;
 }
 
 void Pigeon::fly(SDL_Renderer*, SDL_Texture* assets){
