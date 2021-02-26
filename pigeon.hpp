@@ -1,7 +1,7 @@
 #include<SDL.h>
 
 class Pigeon{
-SDL_Rect srcSprite[3]={{6,6,155,102},{0,154,153,83},{2,278,159,123}}, srcRect, moverRect;
+SDL_Rect srcSprite[3]={{7,15,155,102},{0,164,153,83},{2,288,159,123}}, srcRect, moverRect;
 int frame = 0;
 
 

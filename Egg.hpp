@@ -1,7 +1,7 @@
 #include<SDL.h>
 
 class Egg{
-SDL_Rect srcRect, moverRect;
+SDL_Rect srcSprite[2]={{228,24,132,174},{207,244,231,186}}, srcRect, moverRect;
 
 public:
     // add the fly function here as well.
