@@ -9,8 +9,7 @@ void Pigeon::draw(SDL_Renderer* gRenderer, SDL_Texture* assets){
 }
 
 void Pigeon::fly(SDL_Renderer*, SDL_Texture* assets){
-    if (moverRect.x == 1000) moverRect.x = 0;
-    moverRect.x++;
+    moverRect.x = (moverRect.x + 30)%750;
 }
 
 Pigeon::Pigeon(){
