@@ -7,7 +7,7 @@ class HUMania{
     SDL_Renderer *gRenderer;
     SDL_Texture *assets;
 
-    //Right now we're creating one pigeon, you have to create vectors of pigeons, eggs, and nests    
+    //Creating the vectors to store instances of pigeons, eggs and nests
     std::vector<Pigeon> pigeons;
     std::vector<Egg> eggs;
     std::vector<Nest> nests;
