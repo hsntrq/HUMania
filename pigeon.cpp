@@ -9,7 +9,7 @@ void Pigeon::draw(SDL_Renderer* gRenderer, SDL_Texture* assets){
 }
 
 void Pigeon::fly(SDL_Renderer*, SDL_Texture* assets){
-    moverRect.x = (moverRect.x + 30)%750;
+    moverRect.x = (moverRect.x + 5 + speed)%1000;
 }
 
 Pigeon::Pigeon(int x, int y){

@@ -2,20 +2,13 @@
 #include<iostream>
 using namespace std;
 void HUMania::drawObjects(){
-    // call draw functions of all the objects here
-    for (int k; k < nests.size(); k++){
+    for (int k=0; k < nests.size(); k++){
         nests[k].draw(gRenderer, assets);
     };
-    for (int k; k < nests.size(); k++){
-        nests[k].draw(gRenderer, assets);
-    };
-    for (int i; i < pigeons.size(); i++){
+    for (int i=0; i < pigeons.size(); i++){
         pigeons[i].draw(gRenderer, assets);
     };
-    for (int j; j < eggs.size(); j++){
-        eggs[j].draw(gRenderer, assets);
-    };
-    for (int j; j < eggs.size(); j++){
+    for (int j=0; j < eggs.size(); j++){
         eggs[j].draw(gRenderer, assets);
     };
 }
