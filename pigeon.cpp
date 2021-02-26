@@ -12,10 +12,11 @@ void Pigeon::fly(SDL_Renderer*, SDL_Texture* assets){
     moverRect.x = (moverRect.x + 30)%750;
 }
 
-Pigeon::Pigeon(){
-    // src coorinates from assets.png file, they have been found using spritecow.com
-    srcRect = {0,0,160,133};
+Pigeon::Pigeon(int x, int y){
+    moverRect = {x, y, 50, 60};
+}
 
+Pigeon::Pigeon(){
     // it will display pigeon on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
     moverRect = {30, 40, 50, 60};
 }

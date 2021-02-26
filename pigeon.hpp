@@ -10,4 +10,5 @@ public:
     void draw(SDL_Renderer*, SDL_Texture* assets);
     void fly(SDL_Renderer*, SDL_Texture* assets);
     Pigeon(); // may add other overloaded constructors here... 
+    Pigeon(int x, int y);
 };
