@@ -1,7 +1,8 @@
 #include<SDL.h>
+#include "unit.hpp"
 
-class Egg{
-SDL_Rect srcSprite[2]={{228,24,132,174},{207,244,231,186}}, srcRect, moverRect; //The sprite configuration for the two eggs, and the other variables
+class Egg: public Unit{
+SDL_Rect srcSprite[2]={{228,24,132,174},{207,244,231,186}}; //The sprite configuration for the two eggs, and the other variables
 int frame = 0;//placeholder for choosing the sprite of the egg
 
 public://function declarations
