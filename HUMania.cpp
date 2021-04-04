@@ -14,9 +14,9 @@ void HUMania::drawObjects(){//iterating through the vectors and drawing all of t
     }
     for (list<Unit*>::iterator it = nests.begin(); it != nests.end(); ++it){
         SDL_Rect A = (*it)->Mover();
-        for (list<Unit*>::iterator i = eggs.begin(); i != eggs.end(); ++it){
+        for (list<Unit*>::iterator i = eggs.begin(); i != eggs.end(); ++i){
             SDL_Rect B = (*i)->Mover();
-            if (SDL_HasIntersection(&A, &B)){
+            if (SDL_HasIntersection(&A, &B) == SDL_TRUE){
                 delete *i;
                 eggs.erase(i--);
                 pigeons.push_back(new Pigeon(B.x,B.y,true));

@@ -14,12 +14,12 @@ void Egg::drop(SDL_Renderer*, SDL_Texture* assets){//decrements the height of th
 
 Egg::Egg(int x, int y){//constructor which initiates the egg at location (x, y)
     // it will display egg on (x, y) location, the size of pigeon is 50 width, 60 height
-    moverRect = {x, y, 50, 60};
+    moverRect = {x, y, 25, 35};
 }
 
 Egg::Egg(){//default constructor
     // it will display egg on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
-    moverRect = {30, 40, 50, 60};
+    moverRect = {30, 40, 25, 35};
 }
 bool Egg::is_delete(){
     return false;

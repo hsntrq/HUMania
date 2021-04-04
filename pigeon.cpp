@@ -10,8 +10,16 @@ void Pigeon::draw(SDL_Renderer* gRenderer, SDL_Texture* assets){//alternates the
 
 void Pigeon::fly(SDL_Renderer*, SDL_Texture* assets){//increments the x position of the pigeon with a randomized speed and then circulating it when it reaches the borders
     moverRect.x = (moverRect.x + 5 + speed);
+    if (moverRect.w >= 50 && moverRect.h >= 60){
+        baby = false;
+        moverRect.w = 50;
+        moverRect.h = 60;
+    }
     if (baby){
-        if (moverRect.y > 0) moverRect.y = (moverRect.y - 5 - speed);
+        
+        moverRect.w += 3;
+        moverRect.h += 4;
+        if (moverRect.y > 10) moverRect.y = (moverRect.y - 8 - speed%10);
     }
 }
 bool Pigeon::is_delete(){
@@ -29,6 +37,6 @@ Pigeon::Pigeon(){//default constructor
 }
 Pigeon::Pigeon(int x, int y, bool check){
     baby = check;
-    if (baby) moverRect = {x, y, 5, 5};
+    if (baby) moverRect = {x, y, 15, 18};
     else moverRect = {x, y, 50, 60};
 }
