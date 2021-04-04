@@ -55,19 +55,19 @@ void HUMania::createObject(int x, int y)
 HUMania::HUMania(SDL_Renderer *renderer, SDL_Texture *asst) : gRenderer(renderer), assets(asst) {}
 HUMania::~HUMania() //destructor deletes all dynamically created objects traversing them in all the lists
 {
-    for (list<Unit *>::iterator it = pigeons.begin(); it != pigeons.end(); ++it)
+    for (list<Unit *>::iterator pigeon = pigeons.begin(); pigeon != pigeons.end(); ++pigeon)
     {
-        delete *it;
-        pigeons.erase(it--);
+        delete *pigeon;
+        pigeons.erase(pigeon--);
     }
-    for (list<Unit *>::iterator it = eggs.begin(); it != eggs.end(); ++it)
+    for (list<Unit *>::iterator egg = eggs.begin(); egg != eggs.end(); ++egg)
     {
-        delete *it;
-        eggs.erase(it--);
+        delete *egg;
+        eggs.erase(egg--);
     }
-    for (list<Unit *>::iterator it = nests.begin(); it != nests.end(); ++it)
+    for (list<Unit *>::iterator nest = nests.begin(); nest != nests.end(); ++nest)
     {
-        delete *it;
-        nests.erase(it--);
+        delete *nest;
+        nests.erase(nest--);
     }
 }
