@@ -1,56 +1,72 @@
 #include "HUMania.hpp"
-#include<iostream>
+#include <iostream>
 using namespace std;
-void HUMania::drawObjects(){//iterating through the vectors and drawing all of the instances
-    for (list<Unit*>::iterator it = pigeons.begin(); it != pigeons.end(); ++it){
-        if ((*it)->is_delete()){
-            delete *it;
-            pigeons.erase(it--);
+void HUMania::drawObjects() //iterating through the lists and drawing all of the instances
+{
+    for (list<Unit *>::iterator pigeon = pigeons.begin(); pigeon != pigeons.end(); ++pigeon)
+    {
+        if ((*pigeon)->is_delete()) //checks if the pigeon object should be deleted and deletes the object if true draws otherwise
+        {
+            delete *pigeon;
+            pigeons.erase(pigeon--);
         }
-        else (*it)->draw(gRenderer, assets);
+        else
+            (*pigeon)->draw(gRenderer, assets);
     }
-    for (list<Unit*>::iterator it = eggs.begin(); it != eggs.end(); ++it){
-        (*it)->draw(gRenderer, assets);
+    for (list<Unit *>::iterator egg = eggs.begin(); egg != eggs.end(); ++egg) //traverses and draws all the eggs
+    {
+        (*egg)->draw(gRenderer, assets);
     }
-    for (list<Unit*>::iterator it = nests.begin(); it != nests.end(); ++it){
-        SDL_Rect A = (*it)->Mover();
-        for (list<Unit*>::iterator i = eggs.begin(); i != eggs.end(); ++i){
-            SDL_Rect B = (*i)->Mover();
-            if (SDL_HasIntersection(&A, &B) == SDL_TRUE){
-                delete *i;
-                eggs.erase(i--);
-                pigeons.push_back(new Pigeon(B.x,B.y,true));
+    for (list<Unit *>::iterator nest = nests.begin(); nest != nests.end(); ++nest) //traverses and draws all the nests, also checks for collisions with eggs
+    {
+        SDL_Rect pos_nest = (*nest)->Mover();                                     //retrieves the position of the nest
+        for (list<Unit *>::iterator egg = eggs.begin(); egg != eggs.end(); ++egg) //traverses all the eggs
+        {
+            SDL_Rect pos_egg = (*egg)->Mover();                       //retrieves the position of the egg
+            if (SDL_HasIntersection(&pos_nest, &pos_egg) == SDL_TRUE) //checks if the egg collides with the nest deletes egg and pushes  a new pegion in pigeons list if true
+            {
+                delete *egg;
+                eggs.erase(egg--);
+                pigeons.push_back(new Pigeon(pos_egg.x, pos_egg.y, true));
             }
         }
-        (*it)->draw(gRenderer, assets);
+        (*nest)->draw(gRenderer, assets);
     }
 }
 
-void HUMania::createObject(int x, int y){
-    int r = rand()%3;//randomly choosing a value from 0, 1 and 2
-    std::cout<<"Mouse clicked at: "<<x<<" -- "<<y<<std::endl;
-    if (r == 0){//create a pigeon at location (x, y) and push it in the vector of pigeons
-        pigeons.push_back(new Pigeon(x,y));
+void HUMania::createObject(int x, int y)
+{
+    int r = rand() % 3; //randomly choosing a value from 0, 1 and 2
+    std::cout << "Mouse clicked at: " << x << " -- " << y << std::endl;
+    if (r == 0)
+    { //create a pigeon at location (x, y) and push it in the vector of pigeons
+        pigeons.push_back(new Pigeon(x, y));
     }
-    else if (r == 1){//create a nest at location (x, y) and push it in the vector of nests
-        nests.push_back(new Nest(x,y));
+    else if (r == 1)
+    { //create a nest at location (x, y) and push it in the vector of nests
+        nests.push_back(new Nest(x, y));
     }
-    else{//create a egg at location (x, y) and push it in the vector of eggs
-        eggs.push_back(new Egg(x,y));
+    else
+    { //create a egg at location (x, y) and push it in the vector of eggs
+        eggs.push_back(new Egg(x, y));
     }
 }
 
-HUMania::HUMania(SDL_Renderer *renderer, SDL_Texture *asst):gRenderer(renderer), assets(asst){}
-HUMania::~HUMania(){
-    for (list<Unit*>::iterator it = pigeons.begin(); it != pigeons.end(); ++it){
+HUMania::HUMania(SDL_Renderer *renderer, SDL_Texture *asst) : gRenderer(renderer), assets(asst) {}
+HUMania::~HUMania() //destructor deletes all dynamically created objects traversing them in all the lists
+{
+    for (list<Unit *>::iterator it = pigeons.begin(); it != pigeons.end(); ++it)
+    {
         delete *it;
         pigeons.erase(it--);
     }
-    for (list<Unit*>::iterator it = eggs.begin(); it != eggs.end(); ++it){
+    for (list<Unit *>::iterator it = eggs.begin(); it != eggs.end(); ++it)
+    {
         delete *it;
         eggs.erase(it--);
     }
-    for (list<Unit*>::iterator it = nests.begin(); it != nests.end(); ++it){
+    for (list<Unit *>::iterator it = nests.begin(); it != nests.end(); ++it)
+    {
         delete *it;
         nests.erase(it--);
     }
