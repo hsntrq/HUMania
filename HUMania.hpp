@@ -22,4 +22,5 @@ class HUMania{
     HUMania(SDL_Renderer *, SDL_Texture *);
     void drawObjects(); 
     void createObject(int, int);
+    ~ HUMania();
 };

@@ -20,3 +20,7 @@ Nest::Nest(){//default constructor
     // it will display pigeon on x = 30, y = 40 location, the size of pigeon is 50 width, 60 height
     moverRect = {30, 40, 50, 60};
 }
+
+bool Nest::is_delete(){
+    return false;
+}

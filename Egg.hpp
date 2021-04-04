@@ -10,4 +10,5 @@ public://function declarations
     void drop(SDL_Renderer*, SDL_Texture* assets);
     Egg(); // may add other overloaded constructors here... 
     Egg(int x, int y);
+    bool is_delete();
 };

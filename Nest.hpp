@@ -9,4 +9,5 @@ public://function declarations
     void wiggle(SDL_Renderer*, SDL_Texture* assets);
     Nest(); // may add other overloaded constructors here... 
     Nest(int x, int y);
+    bool is_delete();
 };

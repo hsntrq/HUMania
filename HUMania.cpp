@@ -3,23 +3,27 @@
 using namespace std;
 void HUMania::drawObjects(){//iterating through the vectors and drawing all of the instances
     for (list<Unit*>::iterator it = pigeons.begin(); it != pigeons.end(); ++it){
-        (*it)->draw(gRenderer, assets);
+        if ((*it)->is_delete()){
+            delete *it;
+            pigeons.erase(it--);
+        }
+        else (*it)->draw(gRenderer, assets);
     }
     for (list<Unit*>::iterator it = eggs.begin(); it != eggs.end(); ++it){
         (*it)->draw(gRenderer, assets);
     }
     for (list<Unit*>::iterator it = nests.begin(); it != nests.end(); ++it){
+        SDL_Rect A = (*it)->Mover();
+        for (list<Unit*>::iterator i = eggs.begin(); i != eggs.end(); ++it){
+            SDL_Rect B = (*i)->Mover();
+            if (SDL_HasIntersection(&A, &B)){
+                delete *i;
+                eggs.erase(i--);
+                pigeons.push_back(new Pigeon(B.x,B.y,true));
+            }
+        }
         (*it)->draw(gRenderer, assets);
     }
-    // for (int i = 0; i < nests.size(); i++){//drawing all the nests
-    //     nests[i].draw(gRenderer, assets);
-    // };
-    // for (int j = 0; j < pigeons.size(); j++){//drawing all the pigeons
-    //     pigeons[j].draw(gRenderer, assets);
-    // };
-    // for (int k = 0; k < eggs.size(); k++){//drawing all the eggs
-    //     eggs[k].draw(gRenderer, assets);
-    // };
 }
 
 void HUMania::createObject(int x, int y){
@@ -37,3 +41,17 @@ void HUMania::createObject(int x, int y){
 }
 
 HUMania::HUMania(SDL_Renderer *renderer, SDL_Texture *asst):gRenderer(renderer), assets(asst){}
+HUMania::~HUMania(){
+    for (list<Unit*>::iterator it = pigeons.begin(); it != pigeons.end(); ++it){
+        delete *it;
+        pigeons.erase(it--);
+    }
+    for (list<Unit*>::iterator it = eggs.begin(); it != eggs.end(); ++it){
+        delete *it;
+        eggs.erase(it--);
+    }
+    for (list<Unit*>::iterator it = nests.begin(); it != nests.end(); ++it){
+        delete *it;
+        nests.erase(it--);
+    }
+}
